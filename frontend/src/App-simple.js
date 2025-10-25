@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 
@@ -11,38 +11,15 @@ const Profile = React.lazy(() => import('./pages/Profile-simple'));
 const Layout = React.lazy(() => import('./components/Layout-simple'));
 const LoadingSpinner = React.lazy(() => import('./components/LoadingSpinner'));
 
-// Simple background component
-const SimpleBackground = () => {
-  return (
-    <div 
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        width: '100%', 
-        height: '100%', 
-        zIndex: -1,
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        opacity: 0.1
-      }}
-    />
-  );
-};
-
-// Main App Component
 function App() {
   const { isAuthenticated, initializeAuth } = useAuthStore();
 
-  useEffect(() => {
+  React.useEffect(() => {
     initializeAuth();
   }, [initializeAuth]);
 
   return (
     <div className="App">
-      {/* Simple Background */}
-      <SimpleBackground />
-      
-      {/* Main Application Content */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
