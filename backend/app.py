@@ -7,7 +7,7 @@ import os
 import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager  # pyright: ignore[reportMissingImports]
 from dotenv import load_dotenv
 from datetime import timedelta
 
